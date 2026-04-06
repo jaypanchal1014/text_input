@@ -1,3 +1,3 @@
-library flutter_text_input;
+library;
 
 export 'src/text_input.dart';
