@@ -1,172 +1,260 @@
-# Reusable Text Input
+# Flutter Text Input
 
-A lightweight and customizable Flutter package that provides a reusable text input field with support for validation, icons, formatters, and password visibility toggle.
-
-This package helps developers build consistent and reusable form inputs across Flutter applications.
+A powerful and customizable Flutter text input widget with built-in validation, password toggle, character counter, phone number support, email validation, search field support, and more.
 
 ---
 
-## ✨ Features
+## Features
 
-* Reusable TextFormField widget
-* Prefix and suffix icons support
-* Password visibility toggle
-* Input validation support
-* Input formatters support
-* Keyboard type customization
-* Enable / disable field
-* Custom border styling
+✅ Email Validation
+
+✅ Phone Number Validation
+
+✅ Digits Only Input
+
+✅ Password Visibility Toggle
+
+✅ Search Field
+
+✅ Clear Button
+
+✅ Character Counter
+
+✅ Prefix Icon
+
+✅ Suffix Icon
+
+✅ Read Only Mode
+
+✅ Enabled / Disabled State
+
+✅ Multiline Support
+
+✅ FocusNode Support
+
+✅ Controller Support
+
+✅ Custom Border Radius
+
+✅ Custom Border Color
+
+✅ Form Validation Support
+
+✅ Floating Labels
+
+✅ Lightweight & Easy To Use
 
 ---
 
-## demo 
+## Demo
 
 
-https://github.com/user-attachments/assets/552a957d-c93d-4cee-9b3e-ccea8603ec41
+https://github.com/user-attachments/assets/7d0c9d01-425c-4fa1-9130-a04e67825de8
 
 
+---
+## Installation
 
-
-
-
-## 📦 Installation
-
-Add the dependency to your **pubspec.yaml**
+Add dependency to your `pubspec.yaml`
 
 ```yaml
 dependencies:
-  reusable_text_input:
+  flutter_text_input_: 
     path: ../
 ```
 
-Then run:
+Run:
 
-```
+```bash
 flutter pub get
 ```
 
 ---
 
-## 🚀 Usage
-
-Import the package:
+## Import
 
 ```dart
-import 'package:reusable_text_input/reusable_text_input.dart';
+import 'package:flutter_text_input_/flutter_text_input_.dart';
+
 ```
 
-Example usage:
+---
+
+## Basic Usage
 
 ```dart
-ReusableTextField(
-  controller: emailController,
-  labelText: "Email",
-  hintText: "Enter your email",
+FlutterTextInput(
+  hintText: 'Enter Name',
+)
+```
+
+---
+
+## Email Field
+
+```dart
+FlutterTextInput(
+
+  labelText: 'Email',
+
+  hintText: 'Enter Email',
+
   prefixIcon: Icons.email,
-  keyboardType: TextInputType.emailAddress,
-  validator: (value) {
-    if (value == null || value.isEmpty) {
-      return "Enter email";
-    }
-    return null;
-  },
+
+  isEmail: true,
 )
+```
+
+### Valid Examples
+
+```text
+hello@gmail.com
+test123@yahoo.com
+jay.dev@gmail.com
+```
+
+### Invalid Examples
+
+```text
+hello
+hello123
+abc@gmail
+@gmail.com
 ```
 
 ---
 
-## 🔐 Password Field Example
+## Phone Number Field
 
 ```dart
-ReusableTextField(
-  controller: passwordController,
-  labelText: "Password",
-  prefixIcon: Icons.lock,
-  obscureText: obscure,
-  suffixIcon: Icon(
-    obscure ? Icons.visibility : Icons.visibility_off,
-  ),
-  onSuffixTap: () {
-    setState(() {
-      obscure = !obscure;
-    });
-  },
-)
-```
+FlutterTextInput(
 
----
+  labelText: 'Phone Number',
 
-## 📱 Phone Number Input Example
+  hintText: 'Enter Phone Number',
 
-```dart
-ReusableTextField(
-  controller: phoneController,
-  labelText: "Phone Number",
   prefixIcon: Icons.phone,
-  keyboardType: TextInputType.phone,
-  inputFormatters: [
-    FilteringTextInputFormatter.digitsOnly,
-    LengthLimitingTextInputFormatter(10),
-  ],
+
+  isPhone: true,
+
+  maxLength: 10,
+
+  showCharacterCounter: true,
+)
+```
+
+### Features
+
+* Allows digits only
+* Automatically validates phone number
+* Character counter support
+
+---
+
+## Password Field
+
+```dart
+FlutterTextInput(
+
+  labelText: 'Password',
+
+  hintText: 'Enter Password',
+
+  prefixIcon: Icons.lock,
+
+  obscureText: true,
+
+  enablePasswordToggle: true,
 )
 ```
 
 ---
 
-## ⚙️ Parameters
+## Search Field
 
-| Parameter       | Description                          |
-| --------------- | ------------------------------------ |
-| controller      | Controls the text being edited       |
-| hintText        | Placeholder text                     |
-| labelText       | Floating label text                  |
-| prefixIcon      | Icon displayed at the start          |
-| suffixIcon      | Icon displayed at the end            |
-| obscureText     | Hides text for password fields       |
-| keyboardType    | Keyboard type (email, phone, number) |
-| validator       | Form validation function             |
-| inputFormatters | Restrict or format input             |
-| enabled         | Enable or disable the field          |
-| onSuffixTap     | Action when suffix icon is tapped    |
+```dart
+FlutterTextInput(
 
----
+  hintText: 'Search...',
 
-## 📸 Example UI
+  prefixIcon: Icons.search,
 
-```
-Email
-[ 📧 Enter email ]
-
-Password
-[ 🔒 ******** 👁 ]
-
-Phone
-[ 📞 9876543210 ]
+  showClearButton: true,
+)
 ```
 
 ---
 
-## 📄 License
+## Full Example
+
+```dart
+FlutterTextInput(
+
+  controller: emailController,
+
+  labelText: 'Email',
+
+  hintText: 'Enter Email',
+
+  prefixIcon: Icons.email,
+
+  isEmail: true,
+)
+```
+
+---
+
+## Parameters
+
+| Parameter            | Type                       | Description                |
+| -------------------- | -------------------------- | -------------------------- |
+| controller           | TextEditingController?     | Text controller            |
+| focusNode            | FocusNode?                 | Focus node                 |
+| hintText             | String?                    | Hint text                  |
+| labelText            | String?                    | Label text                 |
+| prefixIcon           | IconData?                  | Prefix icon                |
+| suffixIcon           | IconData?                  | Suffix icon                |
+| obscureText          | bool                       | Password field             |
+| enablePasswordToggle | bool                       | Password visibility toggle |
+| readOnly             | bool                       | Read only mode             |
+| enabled              | bool                       | Enable / disable field     |
+| maxLines             | int                        | Number of lines            |
+| keyboardType         | TextInputType?             | Keyboard type              |
+| validator            | String? Function(String?)? | Custom validator           |
+| onChanged            | ValueChanged<String>?      | Text changed callback      |
+| borderRadius         | BorderRadius?              | Border radius              |
+| borderColor          | Color?                     | Border color               |
+| isEmail              | bool                       | Email validation           |
+| isPhone              | bool                       | Phone validation           |
+| showClearButton      | bool                       | Show clear button          |
+| showCharacterCounter | bool                       | Show character counter     |
+| maxLength            | int?                       | Maximum character limit    |
+
+---
+
+## Example App
+
+```dart
+FlutterTextInput(
+
+  labelText: 'Phone Number',
+
+  isPhone: true,
+
+  maxLength: 10,
+
+  showCharacterCounter: true,
+)
+```
+
+---
+
+
+
+## License
 
 MIT License
 
-Copyright (c) 2026 Excelsior Technologies
+Copyright (c) 2026 Jay
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files to deal in the Software without restriction.
